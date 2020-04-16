@@ -1,4 +1,4 @@
-package utilities;
+package com.Bitrix24.utilities;
 
 
 import org.apache.commons.io.FileUtils;
@@ -8,6 +8,7 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import utilities.Driver;
 
 import java.io.File;
 import java.io.IOException;
@@ -51,7 +52,7 @@ public class BrowserUtils {
     public static void waitForPageToLoad(long timeOutInSeconds) {
         ExpectedCondition<Boolean> expectation = driver -> ((JavascriptExecutor) driver).executeScript("return document.readyState").equals("complete");
         try {
-            WebDriverWait wait = new WebDriverWait(Driver.getDriver(), timeOutInSeconds);
+            WebDriverWait wait = new WebDriverWait(utilities.Driver.getDriver(), timeOutInSeconds);
             wait.until(expectation);
         } catch (Throwable error) {
             error.printStackTrace();
@@ -64,8 +65,8 @@ public class BrowserUtils {
      * @param element
      */
     public static void clickWithJS(WebElement element) {
-        ((JavascriptExecutor) Driver.getDriver()).executeScript("arguments[0].scrollIntoView(true);", element);
-        ((JavascriptExecutor) Driver.getDriver()).executeScript("arguments[0].click();", element);
+        ((JavascriptExecutor) utilities.Driver.getDriver()).executeScript("arguments[0].scrollIntoView(true);", element);
+        ((JavascriptExecutor) utilities.Driver.getDriver()).executeScript("arguments[0].click();", element);
     }
 
     /**
@@ -74,7 +75,7 @@ public class BrowserUtils {
      * @param element
      */
     public static void scrollTo(WebElement element) {
-        ((JavascriptExecutor) Driver.getDriver()).executeScript("arguments[0].scrollIntoView(true);", element);
+        ((JavascriptExecutor) utilities.Driver.getDriver()).executeScript("arguments[0].scrollIntoView(true);", element);
     }
 
     /**
